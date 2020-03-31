@@ -1,26 +1,22 @@
 package com.example.mydash;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.RemoteViews;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
-
+    private NotificationManagerCompat notificationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +34,30 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
+        //notifications
+        notificationManager = NotificationManagerCompat.from(this);
 
+    }
+    public void showNotification(View v){
+        RemoteViews collapsedNotification = new RemoteViews(getPackageName(),
+                R.layout.notification_collapsed);
+        RemoteViews expandedNotification = new RemoteViews(getPackageName(),
+                R.layout.notification_expanded);
+
+        Notification notifi = new NotificationCompat.Builder(this, NotificationChannels.CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_content)
+                .setCustomContentView(collapsedNotification)
+                .setCustomBigContentView(expandedNotification)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .build();
+
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent openPending = PendingIntent.getActivity(this, 0,
+                notificationIntent, 0);
+        notificationManager.notify(1,notifi);
 
     }
 

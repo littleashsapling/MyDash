@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+
 
 
 /**
@@ -32,7 +32,7 @@ public class DashFragment extends Fragment {
                              Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_dash, container, false);
         //date stuff
-        TextView textView= fragmentView.findViewById(R.id.currentDate);
+        TextView textView = fragmentView.findViewById(R.id.currentDate);
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, ''yy");
         String currentDateAndTime = sdf.format(new Date());
         textView.setText(currentDateAndTime);
@@ -43,7 +43,7 @@ public class DashFragment extends Fragment {
         ImageButton sadButton = fragmentView.findViewById(R.id.sadImageButton);
 
         //comment box
-        EditText commentBox=fragmentView.findViewById(R.id.commentBox);
+        EditText commentBox = fragmentView.findViewById(R.id.commentBox);
 
         //submit button
         Button submit = fragmentView.findViewById(R.id.commentSubmit);
@@ -54,6 +54,5 @@ public class DashFragment extends Fragment {
 
     }
 
-
-    }
 }
+
