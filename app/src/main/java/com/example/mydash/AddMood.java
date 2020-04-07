@@ -1,8 +1,11 @@
 package com.example.mydash;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +14,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DashFragment extends Fragment {
+public class AddMood extends Fragment {
+private EditText commentBox;
+private String moodString;
+DBManager dbm;
 
-    public DashFragment() {
+
+    public AddMood() {
         // Required empty public constructor
     }
 
@@ -47,6 +54,8 @@ public class DashFragment extends Fragment {
 
         //submit button
         Button submit = fragmentView.findViewById(R.id.commentSubmit);
+        //db
+        dbm=new DBManager(getContext());
 
         // Inflate the layout for this fragment
         return fragmentView;
@@ -54,5 +63,21 @@ public class DashFragment extends Fragment {
 
     }
 
+    public void happyClicked(View v) {
+    moodString="Happy";
+    }
+
+    public void contentClicked(View v){
+        moodString="Content";
+    }
+
+    public void sadClicked(View v){
+        moodString="Sad";
+    }
+
+    public void submitMood(View view) {
+        SQLiteDatabase db = dbm.getWritableDatabase();
+        Database.insertRow(db, moodString, commentBox.getText().toString());
+    }
 }
 

@@ -19,7 +19,7 @@ public class PagesAdapter extends FragmentPagerAdapter {
 
         switch(position){
             case 0:
-                return new DashFragment();
+                return new AddMood();
             case 1:
                 return new HistoryFragment();
             case 2:
