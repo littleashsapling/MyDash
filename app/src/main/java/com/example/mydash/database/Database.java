@@ -1,14 +1,9 @@
-package com.example.mydash;
+package com.example.mydash.database;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,23 +19,26 @@ public class Database {
     public static final String DATE = "Date";
     //query
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
-            + ID + "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-            + MOOD + "TEXT NOT NULL,"
-            + NOTES + "TEXT,"
-            + DATE + "DATETIME);";
+            + ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+            + MOOD + " TEXT NOT NULL,"
+            + NOTES + " TEXT,"
+            + DATE + " DATETIME);";
 
-    public static void insertRow(SQLiteDatabase db, String mood, String notes) {
+    public static long insertRow(SQLiteDatabase db, String mood, String notes) {
         ContentValues values = new ContentValues();
         values.put(MOOD, mood);
         values.put(NOTES, notes);
         values.put(DATE, System.currentTimeMillis());
-        db.insert(TABLE_NAME, null, values);
+
+       long rowInserted= db.insert(TABLE_NAME, null, values);
+
+       return rowInserted;
     }
 
     public static List<Mood> getMoods(SQLiteDatabase db) {
         ArrayList<Mood> results = new ArrayList<>();
         String[] columns = {MOOD, NOTES, DATE};
-        Cursor cursor = db.query(TABLE_NAME, columns, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME+" ORDER BY id DESC",null);
 
         while (cursor.moveToNext()) {
             int iMood = cursor.getColumnIndex(MOOD);
@@ -55,4 +53,11 @@ public class Database {
 
         return results;
     }
+
+    public static boolean clearTable(SQLiteDatabase db){
+        db.delete(TABLE_NAME,null, null);
+        db.close();
+        return true;
+    }
+
 }

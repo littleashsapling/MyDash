@@ -5,13 +5,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.mydash.mooddash.AddMood;
 
 public class PagesAdapter extends FragmentPagerAdapter {
     private int numOfTabs;
-
-    public PagesAdapter (FragmentManager fm, int numOfTabs){
+    private ViewPager vPage;
+    private AddMood moodPage;
+    private HistoryFragment h;
+    private SettingsFragment settings;
+    public PagesAdapter (FragmentManager fm, int numOfTabs,ViewPager vPage){
         super(fm);
         this.numOfTabs = numOfTabs;
+        this.vPage = vPage;
+        moodPage = new AddMood();
+        h = new HistoryFragment();
+        settings= new SettingsFragment();
     }
     @NonNull
     @Override
@@ -19,11 +29,12 @@ public class PagesAdapter extends FragmentPagerAdapter {
 
         switch(position){
             case 0:
-                return new AddMood();
+                return moodPage;
             case 1:
-                return new HistoryFragment();
+                vPage.addOnPageChangeListener(h);
+                return h;
             case 2:
-                return new SettingsFragment();
+                return settings;
             default:
                 return null;
         }

@@ -1,4 +1,6 @@
-package com.example.mydash;
+package com.example.mydash.database;
+
+import com.example.mydash.R;
 
 import java.util.Date;
 
@@ -29,5 +31,8 @@ public class Mood {
             case "Sad": return R.color.colorSad;
             default: return R.color.colorContent;
         }
+    }
+    public String dateToString(){
+        return date.toString();
     }
 }

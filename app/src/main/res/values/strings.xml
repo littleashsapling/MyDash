@@ -2,9 +2,10 @@
     <string name="app_name">MyDash</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="please_enter_why_you_are_feeling_this_way_as_well_as_anything_else_you_want_to_record_about_today">Please enter why you are feeling this way, as well as anything else you want to record about today!</string>
     <string name="how_are_you_feeling_today">How are you feeling today?</string>
     <string name="date">Date</string>
     <string name="submit">Submit</string>
+    <string name="mood">Mood</string>
+    <string name="notes">notes</string>
 </resources>

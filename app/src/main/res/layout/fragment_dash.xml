@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddMood">
+    tools:context=".mooddash.AddMood">
 
     <ImageButton
         android:id="@+id/happyImageButton"
@@ -15,7 +15,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:background="#7AAE3D"
-        android:onClick="happyClicked"
         android:src="@drawable/ic_happy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/moodTitle" />
@@ -26,7 +25,6 @@
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:background="#FEC20F"
-        android:onClick="contentClicked"
         android:src="@drawable/ic_content"
         app:layout_constraintEnd_toStartOf="@+id/sadImageButton"
         app:layout_constraintStart_toEndOf="@+id/happyImageButton"
@@ -40,7 +38,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="#7554A3"
-        android:onClick="sadClicked"
         android:src="@drawable/ic_sadface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/moodTitle" />
@@ -92,7 +89,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:background="#7AAE3D"
-        android:onClick="submitMood"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
