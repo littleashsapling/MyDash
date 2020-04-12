@@ -18,19 +18,19 @@
             android:id="@+id/tabDash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dash" />
+            android:text="@string/dash" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="History" />
+            android:text="@string/history" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings" />
+            android:text="@string/settings" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

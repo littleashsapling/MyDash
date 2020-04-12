@@ -1,9 +1,6 @@
 package com.example.mydash;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -41,6 +38,7 @@ public class SettingsFragment extends Fragment {
         dbm = new DBManager(getContext());
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,6 +47,9 @@ public class SettingsFragment extends Fragment {
         //clear table
         Button clear = fragmentView.findViewById(R.id.clearTable);
         clear.setOnClickListener(clearedTable);
+
+        Button contact = fragmentView.findViewById(R.id.contactUs);
+        contact.setOnClickListener(sendEmail);
 
         return fragmentView;
     }
@@ -68,4 +69,16 @@ public class SettingsFragment extends Fragment {
         }
     };
 
+
+    private View.OnClickListener sendEmail = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+            emailIntent.setType("plain/text");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "joy.a.l@hotmail.com" });
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "mail body");
+            startActivity(emailIntent);
+        }
+    };
 }
